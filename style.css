@@ -1,0 +1,820 @@
+/* ========================================
+   YAK ATTACK - Yakubu Aiyegbeni Tribute
+   Retro sports magazine meets Israeli street culture
+   ======================================== */
+
+:root {
+    /* Maccabi Haifa colors */
+    --green: #009739;
+    --green-dark: #006b28;
+    --green-light: #00b945;
+    --white: #ffffff;
+    --cream: #f8f7f2;
+    --black: #0a0a0a;
+    --gray: #2a2a2a;
+    --gray-light: #666666;
+
+    /* Accent colors */
+    --gold: #ffd700;
+    --red: #ff2600;
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow Condensed', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ========================================
+   GRAIN TEXTURE OVERLAY
+   ======================================== */
+
+.grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 25%); }
+    90% { transform: translate(-10%, 10%); }
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    overflow: hidden;
+}
+
+/* Background pattern - halftone dots */
+.hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.08;
+    background-image: radial-gradient(circle, var(--white) 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
+    animation: pattern-drift 30s linear infinite;
+}
+
+@keyframes pattern-drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(25px, 25px); }
+}
+
+/* Scanlines for VHS effect */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05) 0px,
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(2px); }
+}
+
+/* Hero content */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Club badge */
+.club-badge {
+    margin-bottom: 2rem;
+    animation: badge-bounce 2s ease-out;
+}
+
+@keyframes badge-bounce {
+    0% { transform: translateY(-100px) rotate(-180deg); opacity: 0; }
+    60% { transform: translateY(10px) rotate(5deg); }
+    80% { transform: translateY(-5px) rotate(-3deg); }
+    100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+
+.badge-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: var(--white);
+    border: 5px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transform: rotate(-10deg);
+}
+
+.badge-text {
+    font-family: 'Antonio', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.2;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Title */
+.hero-title {
+    margin-bottom: 3rem;
+}
+
+.title-main {
+    font-family: 'Antonio', sans-serif;
+    font-size: clamp(4rem, 18vw, 8rem);
+    font-weight: 700;
+    line-height: 0.85;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    display: flex;
+    flex-direction: column;
+    text-shadow:
+        4px 4px 0 var(--green-dark),
+        8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.title-line {
+    display: block;
+    animation: slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.title-line:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.title-line-offset {
+    transform: translateX(15%);
+    animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: 0.4s;
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.title-sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    animation: fade-in 1s ease-out 0.8s backwards;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+}
+
+.player-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    color: var(--white);
+    letter-spacing: 0.1em;
+    background: var(--green-dark);
+    padding: 0.3rem 1rem;
+    transform: skewX(-8deg);
+}
+
+.player-number {
+    font-family: 'Antonio', sans-serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 2px 2px 0 var(--green-dark);
+}
+
+/* Stats banner */
+.stats-banner {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 5vw, 3rem);
+    margin-top: 2rem;
+    animation: fade-in 1s ease-out 1s backwards;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    border: 3px solid var(--white);
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+    backdrop-filter: blur(10px);
+    transform: skewX(-5deg);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.stat:hover {
+    transform: skewX(-5deg) scale(1.1);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+    font-family: 'Antonio', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    transform: skewX(5deg);
+}
+
+.stat-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    color: var(--white);
+    letter-spacing: 0.15em;
+    margin-top: 0.3rem;
+    transform: skewX(5deg);
+}
+
+/* Hero image - silhouette */
+.hero-image {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: clamp(150px, 30vw, 300px);
+    height: auto;
+    z-index: 5;
+    opacity: 0.15;
+    animation: silhouette-fade 1.5s ease-out 0.5s backwards;
+}
+
+@keyframes silhouette-fade {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 0.15; }
+}
+
+.image-placeholder .silhouette {
+    width: 100%;
+    height: auto;
+    color: var(--white);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--white);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    animation: fade-in 1s ease-out 1.5s backwards;
+}
+
+.scroll-arrow {
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* ========================================
+   SECTION HEADERS
+   ======================================== */
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-family: 'Antonio', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: var(--gold);
+    transform: translateY(-50%) skewY(-2deg);
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.title-underline {
+    width: 100px;
+    height: 5px;
+    background: var(--green);
+    margin: 1rem auto 0;
+}
+
+/* ========================================
+   LEGEND SECTION
+   ======================================== */
+
+.legend-section {
+    padding: 5rem 1.5rem;
+    background: var(--cream);
+}
+
+.legend-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.legend-text {
+    margin-bottom: 3rem;
+}
+
+.intro-text {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.highlight-box {
+    background: var(--green);
+    color: var(--white);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-left: 6px solid var(--gold);
+    position: relative;
+    transform: skewY(-1deg);
+}
+
+.highlight-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 0, 0, 0.05) 10px,
+        rgba(0, 0, 0, 0.05) 20px
+    );
+    pointer-events: none;
+}
+
+.highlight-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-box p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.6;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Achievement cards */
+.achievement-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.achievement-card {
+    background: var(--white);
+    border: 3px solid var(--green);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 15px 40px rgba(0, 151, 57, 0.2);
+}
+
+.achievement-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.achievement-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.achievement-card p {
+    font-size: 1rem;
+    color: var(--gray-light);
+}
+
+/* ========================================
+   GAMES SECTION
+   ======================================== */
+
+.games-section {
+    padding: 5rem 1.5rem;
+    background: var(--white);
+}
+
+.games-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.game-card {
+    background: var(--cream);
+    border: 4px solid var(--black);
+    padding: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: var(--green);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+}
+
+.game-card:hover::before {
+    transform: scaleY(1);
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.game-header {
+    background: var(--green);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.game-badge {
+    font-family: 'Antonio', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--gold);
+    color: var(--black);
+    padding: 0.3rem 0.7rem;
+    letter-spacing: 0.05em;
+}
+
+.game-score {
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--white);
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.team-home {
+    align-items: flex-start;
+}
+
+.team-away {
+    align-items: flex-end;
+}
+
+.team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.team-home .team-name {
+    text-align: left;
+}
+
+.team-away .team-name {
+    text-align: right;
+}
+
+.score {
+    font-family: 'Antonio', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+}
+
+.vs {
+    font-size: 1rem;
+    color: var(--gray-light);
+    font-weight: 400;
+}
+
+.game-description {
+    padding: 0 1.5rem 1.5rem;
+    background: var(--white);
+}
+
+.game-description p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gray);
+}
+
+.game-stats {
+    padding: 1rem 1.5rem;
+    background: var(--cream);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-top: 2px solid var(--green);
+}
+
+.stat-pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: var(--white);
+    border: 2px solid var(--green);
+    color: var(--green);
+    padding: 0.3rem 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+/* ========================================
+   QUOTE SECTION
+   ======================================== */
+
+.quote-section {
+    padding: 5rem 1.5rem;
+    background: var(--green);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 50px,
+        rgba(255, 255, 255, 0.03) 50px,
+        rgba(255, 255, 255, 0.03) 100px
+    );
+    pointer-events: none;
+}
+
+.quote-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.quote-mark {
+    font-family: 'Antonio', sans-serif;
+    font-size: 8rem;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.3;
+    margin-bottom: -2rem;
+}
+
+.quote-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.quote-author {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-style: normal;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-family: 'Antonio', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.footer-text {
+    font-size: 1rem;
+    color: var(--gray-light);
+    margin-bottom: 0.5rem;
+}
+
+.footer-years {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+}
+
+.footer-colors {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.color-block {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--white);
+}
+
+.color-block.green {
+    background: var(--green);
+}
+
+.color-block.white {
+    background: var(--white);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .achievement-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .game-score {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .team {
+        width: 100%;
+        align-items: center !important;
+    }
+
+    .team-name {
+        text-align: center !important;
+    }
+
+    .vs {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-banner {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stat {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}
