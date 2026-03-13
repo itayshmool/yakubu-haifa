@@ -434,6 +434,53 @@ body {
     height: auto;
     display: block;
     filter: contrast(1.1) saturate(1.2);
+    min-height: 400px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+}
+
+.photo-placeholder {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.1) 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
+}
+
+.placeholder-content {
+    text-align: center;
+    color: var(--white);
+    padding: 2rem;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.placeholder-text h3 {
+    font-family: 'Antonio', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+.placeholder-text p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.placeholder-hint {
+    font-size: 0.9rem !important;
+    opacity: 0.6 !important;
+    font-style: italic;
 }
 
 .photo-overlay {
